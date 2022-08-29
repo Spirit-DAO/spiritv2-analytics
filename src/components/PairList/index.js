@@ -167,6 +167,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
 
   const ListItem = ({ pairAddress, index }) => {
     const pairData = pairs[pairAddress]
+    const feeValue = pairData.isStable ? 0.04 : 0.18
 
     if (pairData && pairData.token0 && pairData.token1) {
       const liquidity = formattedNum(
@@ -180,7 +181,10 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       )
 
       const apy = formattedPercent(
-        ((pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked) * 0.003 * 365 * 100) /
+        ((pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked) *
+          feeValue *
+          365 *
+          100) /
           (pairData.oneDayVolumeUSD ? pairData.trackedReserveUSD : pairData.reserveUSD)
       )
 
@@ -190,7 +194,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       )
 
       const fees = formattedNum(
-        pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD * 0.003 : pairData.oneDayVolumeUntracked * 0.003,
+        pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD * feeValue : pairData.oneDayVolumeUntracked * feeValue,
         true
       )
 
