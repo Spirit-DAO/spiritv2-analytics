@@ -162,10 +162,14 @@ export default function Provider({ children }) {
 
   return (
     <PairDataContext.Provider
-      value={useMemo(
-        () => [state, { update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData }],
-        [state, update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData]
-      )}
+      value={useMemo(() => [state, { update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData }], [
+        state,
+        update,
+        updatePairTxns,
+        updateChartData,
+        updateTopPairs,
+        updateHourlyData,
+      ])}
     >
       {children}
     </PairDataContext.Provider>
@@ -217,7 +221,6 @@ async function getBulkPairData(pairList, ftmPrice) {
               query: PAIR_DATA(pair.id, b1),
               fetchPolicy: 'cache-first',
             })
-
             oneDayHistory = newData.data.pairs[0]
           }
           let twoDayHistory = twoDayData?.[pair.id]
