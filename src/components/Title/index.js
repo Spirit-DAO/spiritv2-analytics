@@ -63,7 +63,6 @@ export default function Title() {
   const history = useHistory()
   const below1080 = useMedia('(max-width: 1080px)')
   const below480 = useMedia('(max-width: 480px)')
-  // const srcLogo = below480 ? LogoMobile : Logo
   const logoWidth = below480 ? '48px' : '150px'
 
   return (
