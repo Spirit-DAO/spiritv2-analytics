@@ -33,7 +33,7 @@ const UniIcon = styled(Link)`
   }
   @media only screen and (max-width: 480px) {
     span {
-     display: none; 
+      display: none;
     }
   }
 `
@@ -45,8 +45,7 @@ const BackIcon = styled(ArrowLeft)`
     border-radius: 25px;
   }
 `
-const ExternalLink = styled.a`
-`
+const ExternalLink = styled.a``
 
 const Option = styled.div`
   font-weight: 500;
@@ -70,15 +69,15 @@ export default function Title() {
     <TitleWrapper>
       <Flex alignItems="center" style={{ justifyContent: 'space-between' }}>
         <RowFixed>
-          <ExternalLink target="blank" href="https://app.spiritswap.finance/#/">
+          <ExternalLink target="blank" href="https://beta.spiritswap.finance/home">
             <BackIcon size={30} />
           </ExternalLink>
 
           <UniIcon id="link" onClick={() => history.push('/')} width={logoWidth}>
-            <img src={LogoMobile} alt="logo"  />
+            <img src={LogoMobile} alt="logo" />
 
-            <span style={{ color: "#52D784", fontSize: "18px"}}>
-              Spirit<span style={{ color: "#60D5DC" }}>Swap</span>
+            <span style={{ color: '#52D784', fontSize: '18px' }}>
+              Spirit<span style={{ color: '#60D5DC' }}>Swap</span>
             </span>
           </UniIcon>
         </RowFixed>

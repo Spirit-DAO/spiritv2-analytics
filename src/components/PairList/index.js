@@ -167,7 +167,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
 
   const ListItem = ({ pairAddress, index }) => {
     const pairData = pairs[pairAddress]
-
+    const feeValue = pairData.isStable ? 0.04 : 0.18
     if (pairData && pairData.token0 && pairData.token1) {
       const liquidity = formattedNum(
         !!pairData.trackedReserveUSD ? pairData.trackedReserveUSD : pairData.reserveUSD,
@@ -180,7 +180,10 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       )
 
       const apy = formattedPercent(
-        ((pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked) * 0.003 * 365 * 100) /
+        ((pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked) *
+          feeValue *
+          365 *
+          100) /
           (pairData.oneDayVolumeUSD ? pairData.trackedReserveUSD : pairData.reserveUSD)
       )
 
@@ -190,7 +193,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       )
 
       const fees = formattedNum(
-        pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD * 0.003 : pairData.oneDayVolumeUntracked * 0.003,
+        pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD * feeValue : pairData.oneDayVolumeUntracked * feeValue,
         true
       )
 
@@ -238,9 +241,12 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       .sort((addressA, addressB) => {
         const pairA = pairs[addressA]
         const pairB = pairs[addressB]
+        const feeValueA = pairA.isStable ? 0.04 : 0.18
+        const feeValueB = pairB.isStable ? 0.04 : 0.18
+
         if (sortedColumn === SORT_FIELD.APY) {
-          const apy0 = parseFloat(pairA.oneDayVolumeUSD * 0.003 * 356 * 100) / parseFloat(pairA.reserveUSD)
-          const apy1 = parseFloat(pairB.oneDayVolumeUSD * 0.003 * 356 * 100) / parseFloat(pairB.reserveUSD)
+          const apy0 = parseFloat(pairA.oneDayVolumeUSD * feeValueA * 356 * 100) / parseFloat(pairA.reserveUSD)
+          const apy1 = parseFloat(pairB.oneDayVolumeUSD * feeValueB * 356 * 100) / parseFloat(pairB.reserveUSD)
           return apy0 > apy1 ? (sortDirection ? -1 : 1) * 1 : (sortDirection ? -1 : 1) * -1
         }
         return parseFloat(pairA[FIELD_TO_VALUE(sortedColumn, useTracked)]) >
