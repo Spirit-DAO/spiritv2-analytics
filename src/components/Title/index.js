@@ -7,7 +7,6 @@ import Link from '../Link'
 import { RowFixed } from '../Row'
 // import Logo from '../../assets/logo.png'
 import LogoMobile from '../../assets/logo-mobile.png'
-import Wordmark from '../../assets/wordmark_white.svg'
 
 import { BasicLink } from '../Link'
 import { useMedia } from 'react-use'
@@ -25,7 +24,7 @@ const UniIcon = styled(Link)`
   align-items: center;
   transition: transform 0.3s ease;
   & > img {
-    width: 50px;
+    width: 30px;
   }
   :hover {
     transform: rotate(-5deg);
