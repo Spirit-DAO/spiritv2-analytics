@@ -163,8 +163,8 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://www.spiritswap.finance/" target="_blank">
-                SpiritSwap
+              <Link href="https://beta.spiritswap.finance/home" target="_blank">
+                SpiritSwap V2
               </Link>
             </HeaderText>
             <HeaderText>
