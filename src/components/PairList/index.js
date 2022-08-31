@@ -109,6 +109,9 @@ const SORT_FIELD = {
   APY: 5,
 }
 
+const FEE_STABLE = 0.0004
+const FEE_VARIABLE = 0.0018
+
 const FIELD_TO_VALUE = (field, useTracked) => {
   switch (field) {
     case SORT_FIELD.LIQ:
@@ -167,7 +170,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
 
   const ListItem = ({ pairAddress, index }) => {
     const pairData = pairs[pairAddress]
-    const feeValue = pairData.isStable ? 0.04 : 0.18
+    const feeValue = pairData.isStable ? FEE_STABLE : FEE_VARIABLE
     if (pairData && pairData.token0 && pairData.token1) {
       const liquidity = formattedNum(
         !!pairData.trackedReserveUSD ? pairData.trackedReserveUSD : pairData.reserveUSD,
@@ -241,8 +244,8 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       .sort((addressA, addressB) => {
         const pairA = pairs[addressA]
         const pairB = pairs[addressB]
-        const feeValueA = pairA.isStable ? 0.04 : 0.18
-        const feeValueB = pairB.isStable ? 0.04 : 0.18
+        const feeValueA = pairA.isStable ? FEE_STABLE : FEE_VARIABLE
+        const feeValueB = pairB.isStable ? FEE_STABLE : FEE_VARIABLE
 
         if (sortedColumn === SORT_FIELD.APY) {
           const apy0 = parseFloat(pairA.oneDayVolumeUSD * feeValueA * 356 * 100) / parseFloat(pairA.reserveUSD)
