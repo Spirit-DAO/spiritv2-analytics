@@ -151,7 +151,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
 
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
-  const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.LIQ)
+  const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.FEES)
 
   useEffect(() => {
     setMaxPage(1) // edit this to do modular
@@ -196,7 +196,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       )
 
       const fees = formattedNum(
-        pairData.oneDayVolumeUSD ? pairData.oneDayVolumeUSD * feeValue : pairData.oneDayVolumeUntracked * feeValue,
+        pairData.oneWeekVolumeUSD ? pairData.oneWeekVolumeUSD * feeValue : pairData.oneWeekVolumeUntracked * feeValue,
         true
       )
 
@@ -222,7 +222,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
           <DataText area="liq">{formatDataText(liquidity, pairData.trackedReserveUSD)}</DataText>
           <DataText area="vol">{formatDataText(volume, pairData.oneDayVolumeUSD)}</DataText>
           {!below1080 && <DataText area="volWeek">{formatDataText(weekVolume, pairData.oneWeekVolumeUSD)}</DataText>}
-          {!below1080 && <DataText area="fees">{formatDataText(fees, pairData.oneDayVolumeUSD)}</DataText>}
+          {!below1080 && <DataText area="fees">{formatDataText(fees, pairData.oneWeekVolumeUSD)}</DataText>}
           {!below1080 && (
             <DataText area="apy">
               {formatDataText(apy, pairData.oneDayVolumeUSD, pairData.oneDayVolumeUSD === 0)}
@@ -324,7 +324,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
                 setSortDirection(sortedColumn !== SORT_FIELD.FEES ? true : !sortDirection)
               }}
             >
-              Fees (24hr) {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
+              Fees (7d) {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         )}
