@@ -121,7 +121,7 @@ const FIELD_TO_VALUE = (field, useTracked) => {
     case SORT_FIELD.VOL_7DAYS:
       return useTracked ? 'oneWeekVolumeUSD' : 'oneWeekVolumeUntracked'
     case SORT_FIELD.FEES:
-      return useTracked ? 'oneDayVolumeUSD' : 'oneDayVolumeUntracked'
+      return useTracked ? 'oneWeekVolumeUSD' : 'oneWeekVolumeUntracked'
     default:
       return 'trackedReserveUSD'
   }
@@ -251,6 +251,16 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
           const apy0 = parseFloat(pairA.oneDayVolumeUSD * feeValueA * 356 * 100) / parseFloat(pairA.reserveUSD)
           const apy1 = parseFloat(pairB.oneDayVolumeUSD * feeValueB * 356 * 100) / parseFloat(pairB.reserveUSD)
           return apy0 > apy1 ? (sortDirection ? -1 : 1) * 1 : (sortDirection ? -1 : 1) * -1
+        }
+        if (sortedColumn === SORT_FIELD.FEES) {
+          const feeA = parseFloat(
+            pairA.oneWeekVolumeUSD ? pairA.oneWeekVolumeUSD * feeValueA : pairA.oneWeekVolumeUntracked * feeValueA
+          )
+          const feeB = parseFloat(
+            pairB.oneWeekVolumeUSD ? pairB.oneWeekVolumeUSD * feeValueB : pairB.oneWeekVolumeUntracked * feeValueB
+          )
+
+          return feeA > feeB ? (sortDirection ? -1 : 1) * 1 : (sortDirection ? -1 : 1) * -1
         }
         return parseFloat(pairA[FIELD_TO_VALUE(sortedColumn, useTracked)]) >
           parseFloat(pairB[FIELD_TO_VALUE(sortedColumn, useTracked)])
