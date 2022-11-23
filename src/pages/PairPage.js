@@ -122,8 +122,6 @@ function PairPage({ pairAddress, history }) {
     liquidityChangeUSD,
   } = usePairData(pairAddress)
 
-  const [hiddeButtonViewChartOn, setHiddeButtonViewChartOn] = useState(true)
-
   useEffect(() => {
     document.querySelector('body').scrollTo(0, 0)
   }, [])
@@ -289,7 +287,7 @@ function PairPage({ pairAddress, history }) {
                       Trade
                     </ButtonDark>
                   </Link>
-                  {!hiddeButtonViewChartOn && (
+                  {!true && (
                     <Link href={getAstroLink(pairAddress, token0?.symbol, token1?.symbol)} target="_blank">
                       <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
                         View Chart on ZooCoin.Cash

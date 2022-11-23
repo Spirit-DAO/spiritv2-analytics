@@ -162,14 +162,10 @@ export default function Provider({ children }) {
 
   return (
     <PairDataContext.Provider
-      value={useMemo(() => [state, { update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData }], [
-        state,
-        update,
-        updatePairTxns,
-        updateChartData,
-        updateTopPairs,
-        updateHourlyData,
-      ])}
+      value={useMemo(
+        () => [state, { update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData }],
+        [state, update, updatePairTxns, updateChartData, updateTopPairs, updateHourlyData]
+      )}
     >
       {children}
     </PairDataContext.Provider>
