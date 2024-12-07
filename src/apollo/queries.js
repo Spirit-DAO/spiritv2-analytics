@@ -35,7 +35,7 @@ export const GET_BLOCK = gql`
 
 
 export const GET_LATEST_BLOCK = gql`
-  query blocks() {
+  query blocks {
     blocks(first: 1, orderBy:timestamp, orderDirection: desc)
 	{
 		id
