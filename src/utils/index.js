@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { ethers } from 'ethers'
 import utc from 'dayjs/plugin/utc'
 import { client, blockClient } from '../apollo/client'
-import { GET_BLOCK, GET_BLOCKS, SHARE_VALUE } from '../apollo/queries'
+import { GET_BLOCK, GET_LATEST_BLOCK, GET_BLOCKS, SHARE_VALUE } from '../apollo/queries'
 import { Text } from 'rebass'
 import _Decimal from 'decimal.js-light'
 import toFormat from 'toformat'
@@ -140,6 +140,14 @@ export async function getBlockFromTimestamp(timestamp) {
       timestampTo: timestamp + 600,
     },
     fetchPolicy: 'cache-first',
+  })
+  return result?.data?.blocks?.[0]?.number
+}
+
+export async function getLatestBlock() {
+	let result = await blockClient.query({
+		query: GET_LATEST_BLOCK,
+		fetchPolicy: 'cache-first',
   })
   return result?.data?.blocks?.[0]?.number
 }
