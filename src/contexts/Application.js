@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { healthClient } from '../apollo/client'
 import { SUBGRAPH_HEALTH } from '../apollo/queries'
+import { getLatestBlock } from '../utils'
 dayjs.extend(utc)
 
 const UPDATE = 'UPDATE'
