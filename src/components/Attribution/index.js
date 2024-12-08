@@ -6,7 +6,7 @@ const Attribution = () => (
       Github
     </a>{' '}
     |{' '}
-    <a href="https://beta.spiritswap.finance/home" rel="noopener noreferrer" target="_blank">
+    <a href="https://spiritswap.finance" rel="noopener noreferrer" target="_blank">
       Spiritswap
     </a>{' '}
     |{' '}

@@ -68,7 +68,7 @@ export default function Title() {
     <TitleWrapper>
       <Flex alignItems="center" style={{ justifyContent: 'space-between' }}>
         <RowFixed>
-          <ExternalLink target="blank" href="https://beta.spiritswap.finance/home">
+          <ExternalLink target="blank" href="https://spiritswap.finance">
             <BackIcon size={30} />
           </ExternalLink>
 
